@@ -1,6 +1,7 @@
 from functools import lru_cache
 
-from pydantic import BaseSettings, PostgresDsn, RedisDsn, Field
+from pydantic import PostgresDsn, RedisDsn, Field
+from pydantic_settings import BaseSettings
 
 
 class Settings(BaseSettings):
