@@ -1,4 +1,4 @@
-import aioredis
+from redis import asyncio as aioredis
 
 from .config import get_settings
 

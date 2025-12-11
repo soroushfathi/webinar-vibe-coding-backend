@@ -11,7 +11,11 @@ class Conversation(Base):
 
     id: Mapped[int] = mapped_column(Integer, primary_key=True, index=True)
     source: Mapped[str] = mapped_column(String(length=64), nullable=False)
-    external_id: Mapped[str] = mapped_column(String(length=128), unique=True, nullable=False)
-    metadata: Mapped[dict] = mapped_column(JSON, default=dict)
+    external_id: Mapped[str] = mapped_column(
+        String(length=128), unique=True, nullable=False
+    )
+    metadata_: Mapped[dict] = mapped_column(JSON, default=dict)
     created_at: Mapped[datetime] = mapped_column(DateTime, default=datetime.utcnow)
-    updated_at: Mapped[datetime] = mapped_column(DateTime, default=datetime.utcnow, onupdate=datetime.utcnow)
+    updated_at: Mapped[datetime] = mapped_column(
+        DateTime, default=datetime.utcnow, onupdate=datetime.utcnow
+    )

@@ -14,6 +14,8 @@ class Lead(Base):
     email: Mapped[str] = mapped_column(String(length=256), nullable=False, unique=True)
     phone: Mapped[str] = mapped_column(String(length=32), nullable=True)
     status: Mapped[str] = mapped_column(String(length=32), default="new")
-    metadata: Mapped[dict] = mapped_column(JSON, default=dict)
+    metadata_: Mapped[dict] = mapped_column(JSON, default=dict)
     created_at: Mapped[datetime] = mapped_column(DateTime, default=datetime.utcnow)
-    updated_at: Mapped[datetime] = mapped_column(DateTime, default=datetime.utcnow, onupdate=datetime.utcnow)
+    updated_at: Mapped[datetime] = mapped_column(
+        DateTime, default=datetime.utcnow, onupdate=datetime.utcnow
+    )

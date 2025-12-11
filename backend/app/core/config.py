@@ -1,6 +1,6 @@
 from functools import lru_cache
 
-from pydantic import PostgresDsn, RedisDsn, Field
+from pydantic import Field
 from pydantic_settings import BaseSettings
 
 
@@ -9,8 +9,11 @@ class Settings(BaseSettings):
     environment: str = Field("development", env="ENVIRONMENT")
     debug: bool = Field(True, env="DEBUG")
 
-    database_url: PostgresDsn = Field(..., env="DATABASE_URL")
-    redis_url: RedisDsn = Field(..., env="REDIS_URL")
+    database_url: str = Field(
+        "sqlite+aiosqlite:////data/ai_sales.db", env="DATABASE_URL"
+    )
+    sqlite_path: str = Field("./data/ai_sales.db", env="SQLITE_PATH")
+    redis_url: str = Field(..., env="REDIS_URL")
     rabbitmq_url: str = Field(..., env="RABBITMQ_URL")
 
     openai_api_key: str = Field(..., env="OPENAI_API_KEY")
